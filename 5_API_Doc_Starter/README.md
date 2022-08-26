@@ -20,10 +20,11 @@ This API does not implement any authentification
 The bookshelf API uses HTTP response codes to display the success or failure of an API call. 
 
 ### Response - Meaning
+These are possible errors while using the Bookshelf API
+
 - 200 - OK
 - 400 - Bad request
 - 404 - Resource not found
-- 405 - Method not allowed
 - 422 - Unprocessed
 
 ## Endpoint Library
@@ -38,7 +39,6 @@ These are all the endpoints supported by the Bookshelf API
 
 - Response:
 ```
-{
   "books": [
     {
       "author": "Stephen King",
@@ -171,7 +171,7 @@ These are all the endpoints supported by the Bookshelf API
     - This endpoint will add a book to the database as long as a title, author and rating are provided returns the id of the created book, success value, total books, and book list based on current page number to update the frontend.
     - A book object must be provided
 
-- Sample: `curl http://127.0.0.1:5000/books -X POST -H "Content-Type: application/json" -d {"title": "A new beginning", "author": "John Savy", "rating": 3}
+- Sample: `curl http://127.0.0.1:5000/books -X POST -H "Content-Type: application/json" -d {"title": "A new beginning", "author": "John Savy", "rating": 3}`
 
 - Response:
 ```
