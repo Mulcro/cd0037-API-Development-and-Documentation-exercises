@@ -40,8 +40,9 @@ Now, add an Endpoint Library section to your documentation. Make sure that endpo
 - Arguments including data types
 - Response object including status codes and data types 
 
-###Get All Books
+### Get All Books
 endpoint call: 127.0.0.1/books
+
 
 response: {
   "books": [
@@ -98,7 +99,7 @@ response: {
   "total_books": 16
 }
 
-###Update Book rating
+### Update Book rating
 
 Arguments required: book id, rating object
 endpoint: 127.0.0.1/books/id, {'rating': 1-5}
@@ -107,7 +108,7 @@ response: {
     'success': True
 }
 
-###Delete book
+### Delete book
 method: DELETE
 Arguments required: book id
 endpoint: 127.0.0.1/books/id
@@ -120,7 +121,7 @@ response: {
 }
 
 
-###Create Book
+### Create Book
 method: POST
 Arguments required: book id, book object
 endpoint: 127.0.0.1/books/id, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
