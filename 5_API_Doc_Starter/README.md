@@ -17,31 +17,21 @@ The base URL is 127.0.0.1/books
 This API does not implement any authentification
 
 ## Error Handling
-Now, add an Error Handling section to your documentation. It should include the format of the error responses the client can expect as well as which status codes you use.
-- Response codes
-- Messages
-- Error types
-
 The bookshelf API uses HTTP response codes to display the success or failure of an API call. 
 
 ### Response - Meaning
-200 - OK
-400 - Bad request
-404 - Resource not found
-405 - Method not allowed
-422 - Unprocessed
+- 200 - OK
+- 400 - Bad request
+- 404 - Resource not found
+- 405 - Method not allowed
+- 422 - Unprocessed
 
 ## Endpoint Library
-Now, add an Endpoint Library section to your documentation. Make sure that endpoints, methods and returned data are all clear. Consider including sample requests for clarity
-
-- Organized by resource
-- Include each endpoint
-- Sample request 
-- Arguments including data types
-- Response object including status codes and data types 
+These are all the endpoints supported by the Bookshelf API
 
 ### Get All Books
 **Method:** GET
+
 **Endpoint:** 127.0.0.1/books
 
 ```
@@ -102,9 +92,13 @@ response = {
 ```
 ### Update Book rating
 **Method:** PATCH
+
 **Arguments required:** book id, rating object
+
 **Endpoint:** 127.0.0.1/books/id, {'rating': 1-5}
+
 **Example:** 127.0.0.1/books/3, {'rating': 3}
+
 ```
 response = {
     'success': True
@@ -112,9 +106,13 @@ response = {
 ```
 ### Delete book
 **Method:** DELETE
+
 **Arguments required:** book id
+
 **Endpoint:** 127.0.0.1/books/id
+
 **Example:** 127.0.0.1/books/3
+
 ```
 response = {
     'success': True,
@@ -126,9 +124,13 @@ response = {
 
 ### Create Book
 **Method:** POST
+
 **Arguments required:** book id, book object
+
 **Endpoint:** 127.0.0.1/books/id, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
+
 **Example:** 127.0.0.1/books/3, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
+
 ```
 response: {
         "success": True,
