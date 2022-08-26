@@ -44,7 +44,9 @@ Now, add an Endpoint Library section to your documentation. Make sure that endpo
 endpoint call: 127.0.0.1/books
 
 
-response: {
+response: 
+```
+{
   "books": [
     {
       "author": "Stephen King",
@@ -98,7 +100,7 @@ response: {
   "success": true,
   "total_books": 16
 }
-
+```
 ### Update Book rating
 
 Arguments required: book id, rating object
