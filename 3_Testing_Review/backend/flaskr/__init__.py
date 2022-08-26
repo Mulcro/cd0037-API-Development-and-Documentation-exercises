@@ -152,5 +152,9 @@ def create_app(test_config=None):
             jsonify({"success": False, "error": 405, "message": "method not allowed"}),
             405,
         )
-
+    if __name__ == '__main__':
+        app.run('0.0.0.0', debug=True)
+    
     return app
+
+create_app()

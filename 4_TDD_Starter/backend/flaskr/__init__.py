@@ -39,17 +39,22 @@ def create_app(test_config=None):
 
     @app.route("/books")
     def retrieve_books():
-        selection = Book.query.order_by(Book.id).all()
-        current_books = paginate_books(request, selection)
+        page = request.args.get("page", 1, type=int)
+        books = Book.query.order_by(Book.id).all()
 
-        if len(current_books) == 0:
+        start = (page - 1) * BOOKS_PER_SHELF
+        end = start + BOOKS_PER_SHELF
+
+        formatedBooks = [book.format() for book in books]
+        
+        if len(formatedBooks) == 0:
             abort(404)
 
         return jsonify(
             {
                 "success": True,
-                "books": current_books,
-                "total_books": len(Book.query.all()),
+                "books": formatedBooks[start:end],
+                "total_books": len(formatedBooks),
             }
         )
 
@@ -128,6 +133,23 @@ def create_app(test_config=None):
         except:
             abort(422)
 
+    @app.route('/books/search', methods=['POST'])
+    def search_books():
+        try:
+            body = request.get_json()
+            title = body['title']
+            item = "%{}%".format(title)
+
+            search_query = Book.query.filter(Book.title.ilike(item)).all()
+            formatedBooks = [book.format() for book in search_query]
+
+            return jsonify({
+                'success': True,
+                'books': formatedBooks,
+                'total_books': len(formatedBooks)
+            })
+        except:
+            abort(422)
     # @TODO: Create a new endpoint or update a previous endpoint to handle searching for a team in the title
     #        the body argument is called 'search' coming from the frontend.
     #        If you use a different argument, make sure to update it in the frontend code.
@@ -148,8 +170,16 @@ def create_app(test_config=None):
             422,
         )
 
+    @app.errorhandler(405)
+    def bad_request(error):
+        return jsonify({"success": False, "error": 405, "message": "Method not allowed"}), 405
+
     @app.errorhandler(400)
     def bad_request(error):
         return jsonify({"success": False, "error": 400, "message": "bad request"}), 400
 
+    if __name__ == '__main__':
+        app.run('0.0.0.0', debug=True)
     return app
+
+create_app()
