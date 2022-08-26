@@ -30,12 +30,15 @@ The bookshelf API uses HTTP response codes to display the success or failure of 
 These are all the endpoints supported by the Bookshelf API
 
 ### Get All Books
-**Method:** GET
+- General:
+    - This endpoint will return all the books in our database, success and total books
+    - Results are paginated in groups of 8
 
-**Endpoint:** 127.0.0.1/books
+- Sample: `curl -X "GET" http://127.0.0.1:5000/books`
 
+- Response:
 ```
-response = {
+{
   "books": [
     {
       "author": "Stephen King",
@@ -91,51 +94,97 @@ response = {
 }
 ```
 ### Update Book rating
-**Method:** PATCH
+- General:
+    - This endpoint will update the rating of specified book and returns the success value and id of the modified book. 
+    - A rating and book id must be provided
 
-**Arguments required:** book id, rating object
+- Sample: `curl http://127.0.0.1:5000/books -X PATCH -H "Content-Type: application/json" -d '{"rating": 3}'` 
 
-**Endpoint:** 127.0.0.1/books/id, {'rating': 1-5}
-
-**Example:** 127.0.0.1/books/3, {'rating': 3}
-
+- Response:
 ```
-response = {
+ {
     'success': True
 }
 ```
 ### Delete book
-**Method:** DELETE
+- General:
+    - This endpoint will delete the specified book if it exists and returns the id of the deleted book, success value, total books, and book list based on current page number to update the frontend. 
+    - Book Id must be provided
 
-**Arguments required:** book id
+- Sample: `curl -X "DELETE" http://127.0.0.1:5000/books/2`
 
-**Endpoint:** 127.0.0.1/books/id
-
-**Example:** 127.0.0.1/books/3
+- Response:
 
 ```
-response = {
-    'success': True,
-    "deleted": book_id,
-    "books": current_books,
-    "total_books": len(Book.query.all()
+"books" : [
+    {
+      "author": "Gina Apostol",
+      "id": 9,
+      "rating": 5,
+      "title": "Insurrecto: A Novel"
+    },
+    {
+      "author": "Tayari Jones",
+      "id": 10,
+      "rating": 5,
+      "title": "An American Marriage"
+    },
+    {
+      "author": "Jordan B. Peterson",
+      "id": 11,
+      "rating": 5,
+      "title": "12 Rules for Life: An Antidote to Chaos"
+    },
+    {
+      "author": "Kiese Laymon",
+      "id": 12,
+      "rating": 1,
+      "title": "Heavy: An American Memoir"
+    },
+    {
+      "author": "Emily Giffin",
+      "id": 13,
+      "rating": 4,
+      "title": "All We Ever Wanted"
+    },
+    {
+      "author": "Jose Andres",
+      "id": 14,
+      "rating": 4,
+      "title": "We Fed an Island"
+    },
+    {
+      "author": "Rachel Kushner",
+      "id": 15,
+      "rating": 1,
+      "title": "The Mars Room"
+    }
+  ],
+  "deleted": 16,
+  "success": true,
+  "total_books": 15
 }
 ```
 
 ### Create Book
-**Method:** POST
+- General:
+    - This endpoint will add a book to the database as long as a title, author and rating are provided returns the id of the created book, success value, total books, and book list based on current page number to update the frontend.
+    - A book object must be provided
 
-**Arguments required:** book id, book object
+- Sample: `curl http://127.0.0.1:5000/books -X POST -H "Content-Type: application/json" -d {"title": "A new beginning", "author": "John Savy", "rating": 3}
 
-**Endpoint:** 127.0.0.1/books/id, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
-
-**Example:** 127.0.0.1/books/3, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
-
+- Response:
 ```
-response: {
-        "success": True,
-        "created": book.id,
-        "books": current_books,
-        "total_books": len(Book.query.all())
+  "books": [
+    {
+      "author": "Neil Gaiman",
+      "id": 24,
+      "rating": 5,
+      "title": "Neverwhere"
+    }
+  ],
+  "created": 24,
+  "success": true,
+  "total_books": 17
 }
 ```
