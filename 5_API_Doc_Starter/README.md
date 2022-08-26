@@ -41,12 +41,11 @@ Now, add an Endpoint Library section to your documentation. Make sure that endpo
 - Response object including status codes and data types 
 
 ### Get All Books
-endpoint call: 127.0.0.1/books
+**Method:** GET
+**Endpoint:** 127.0.0.1/books
 
-
-response: 
 ```
-{
+response = {
   "books": [
     {
       "author": "Stephen King",
@@ -102,35 +101,39 @@ response:
 }
 ```
 ### Update Book rating
-
-Arguments required: book id, rating object
-endpoint: 127.0.0.1/books/id, {'rating': 1-5}
-example: 127.0.0.1/books/3, {'rating': 3}
-response: {
+**Method:** PATCH
+**Arguments required:** book id, rating object
+**Endpoint:** 127.0.0.1/books/id, {'rating': 1-5}
+**Example:** 127.0.0.1/books/3, {'rating': 3}
+```
+response = {
     'success': True
 }
-
+```
 ### Delete book
-method: DELETE
-Arguments required: book id
-endpoint: 127.0.0.1/books/id
-example: 127.0.0.1/books/3
-response: {
+**Method:** DELETE
+**Arguments required:** book id
+**Endpoint:** 127.0.0.1/books/id
+**Example:** 127.0.0.1/books/3
+```
+response = {
     'success': True,
     "deleted": book_id,
     "books": current_books,
     "total_books": len(Book.query.all()
 }
-
+```
 
 ### Create Book
-method: POST
-Arguments required: book id, book object
-endpoint: 127.0.0.1/books/id, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
-example: 127.0.0.1/books/3, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
+**Method:** POST
+**Arguments required:** book id, book object
+**Endpoint:** 127.0.0.1/books/id, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
+**Example:** 127.0.0.1/books/3, {'title':bookTitle, 'Author': bookAuthor, rating': 1-5}
+```
 response: {
         "success": True,
         "created": book.id,
         "books": current_books,
         "total_books": len(Book.query.all())
 }
+```
