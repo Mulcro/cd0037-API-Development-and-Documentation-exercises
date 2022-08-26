@@ -10,10 +10,10 @@ Now, add a Getting Started section to your documentation. Remember, this should 
 
 The Bookshelf API is built following the REST principles. It returns various books by different authors with their ratings. The Bookshelf API accepts form-encoded request bodies and returns JSON-encoded reponses. 
 
-###Base URL
+### Base URL
 The base URL is 127.0.0.1/books
 
-###Authentification
+### Authentification
 This API does not implement any authentification
 
 ## Error Handling
@@ -24,7 +24,7 @@ Now, add an Error Handling section to your documentation. It should include the 
 
 The bookshelf API uses HTTP response codes to display the success or failure of an API call. 
 
-###Response - Meaning
+### Response - Meaning
 200 - OK
 400 - Bad request
 404 - Resource not found
