@@ -1,10 +1,59 @@
-# Project README - TODO: CHANGE THIS TITLE
+# The Grand Bookshelf 
+
+Welcome to the Grand Bookshelf. Here you will find a grand and vast array of books. Each book comes with it's author and a given rating that has been based off of [Book Review](https://www.bookreview.com). 
+
+We were really motivated to create this API as we noticed a gap in the book API's currently available. We also really love books and really wanted to work on this :)
 
 
+## Getting Started
+### Prerequisites & Instalation
+#### Backend
+To get started on the backend first install all the required modules in the `requirements.txt` file.
+
+```
+cd backend
+pip install -r requirements.txt
+```
+
+After this create a virtual enviroment in the backend directory
+
+```
+python -m venv venv
+```
+activate the virtual enviroment and cd into the flaskr directory. Once there pip install flask, flask_sqlalchemy, flask_cors and psycopg2
+
+```
+venv\Scripts\activate
+cd flaskr
+pip install flask, flask_sqlalchemy, flask_cors, psycopg2
+```
+
+Finally to run the server run it using python
+
+```
+python __init__.py
+
+```
+
+### Frontend
+Cd into the frontend directory and install dependacies then run
+
+```
+cd frontend
+npm install
+npm start
+```
+
+### Testing
+To test the API cd into the backend. Once their simple run the test_flaskr.py file with python.
+
+```
+cd backend
+python test_flaskr.py
+```
 
 ## API Reference
 
-### Getting Started
 - Base URL: At present this app can only be run locally and is not hosted as a base URL. The backend app is hosted at the default, `http://127.0.0.1:5000/`, which is set as a proxy in the frontend configuration. 
 - Authentication: This version of the application does not require authentication or API keys. 
 
@@ -169,3 +218,10 @@ The API will return three error types when requests fail:
   "success": true
 }
 ```
+
+## Authors
+- Me (Mulero Alamou)
+- Udacity 
+
+## Acknowledgements
+I'd like to appriciate Udacity for inspiring and pushing me to learn more and submit my projects!
